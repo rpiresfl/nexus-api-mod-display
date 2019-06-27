@@ -1,0 +1,36 @@
+h1, h2 {
+    text-align: center;
+    color: #FAA431;
+}
+
+.main-div {
+    border: 1px solid #FAA431;
+    border-radius: 3px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.mod-info {
+    border: 1px solid #FAA431;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.mod-info>label {
+    display: block;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.mod-info>span {
+    font-weight: normal;
+}
+
+.label-span {
+    font-weight: normal;
+}
+
+#btnSubmitAPIKey {
+    background-color: #FAA431;
+    border-color: #FAA431;
+}

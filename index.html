@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nexus API</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="res/icons/favicon.png">
+</head>
+<body>
+    <div class="container main-div">
+        <h1>Nexus API</h1>
+
+        <label>API Key</label>
+        <input id="inputAPIKey" type="text">
+
+        <label>Mod ID</label>
+        <input id="inputModID" type="text">
+
+        <label>Game</label>
+        <input id="inputGame" type="text">
+
+        <button id="btnSubmitAPIKey" class="btn btn-primary">Submit API Key</button>
+
+        <div class="container mod-info">
+            <h2>Mod Info</h2>
+
+            <label>Name:<span id="modName" class="label-span"></span></label>
+            <label>Summary:<span id="modSummary" class="label-span"></span></label>
+            <label>Author:<span id="modAuthor" class="label-span"></span></label>
+            <label>Version:<span id="modVersion" class="label-span"></span></label>
+            <label>Upload Date:<span id="modUploadDate" class="label-span"></span></label>
+            <label>Last Updated:<span id="modUpdateDate" class="label-span"></span></label>
+            <img id="modPicture" class="img-fluid mod-picture" src="" alt="">
+            <div id="modDescription" class="container description"></div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
