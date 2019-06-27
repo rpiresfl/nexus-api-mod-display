@@ -63,7 +63,6 @@ function parseDate(date) {
 }
 
 function organizeDescription(description) {
-    
     description = description.replace(/\[b\]/g, '<strong>');
     description = description.replace(/\[\/b\]/g, '</strong>');
 
@@ -81,7 +80,7 @@ function organizeDescription(description) {
 
     //Link replacement WIP
     //description = description.replace(/\[url=\]/g, '<a href="');
-    //description = description.replace(/[\>$]/g, '"</a>');
+    description = description.replace(/\[\/url\]/g, '"</a>');
 
     return description;
 }

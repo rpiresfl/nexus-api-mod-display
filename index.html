@@ -10,20 +10,22 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="res/icons/favicon.png">
 </head>
-<body>
+<body class="parallax">
     <div class="container main-div">
         <h1>Nexus API</h1>
 
-        <label>API Key</label>
-        <input id="inputAPIKey" type="text">
+        <div class="api-buttons">
+            <label>API Key</label>
+            <input id="inputAPIKey" type="text">
 
-        <label>Mod ID</label>
-        <input id="inputModID" type="text">
+            <label>Mod ID</label>
+            <input id="inputModID" type="text">
 
-        <label>Game</label>
-        <input id="inputGame" type="text">
+            <label>Game</label>
+            <input id="inputGame" type="text">
 
-        <button id="btnSubmitAPIKey" class="btn btn-primary">Submit API Key</button>
+            <button id="btnSubmitAPIKey" class="btn btn-primary">Submit API Key</button>
+        </div>
 
         <div class="container mod-info">
             <h2>Mod Info</h2>
@@ -34,9 +36,14 @@
             <label>Version:<span id="modVersion" class="label-span"></span></label>
             <label>Upload Date:<span id="modUploadDate" class="label-span"></span></label>
             <label>Last Updated:<span id="modUpdateDate" class="label-span"></span></label>
-            <img id="modPicture" class="img-fluid mod-picture" src="" alt="">
+            <img id="modPicture" class="img-fluid container mod-picture" src="" alt="">
+
+            <h3>Description</h3>
             <div id="modDescription" class="container description"></div>
+
+            
         </div>
+        
     </div>
 
     <script src="js/bootstrap.min.js"></script>

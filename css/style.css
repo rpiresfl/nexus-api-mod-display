@@ -1,17 +1,40 @@
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
-    color: #FAA431;
+    color: white;
+    background-color: #2d2d2d;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.parallax {
+    background-image: url(../res/images/background.jpg);
+    height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.mod-picture {
+    margin: 10px;
+}
+
+.api-buttons {
+    margin: 0 auto;
+    text-align: center;
 }
 
 .main-div {
-    border: 1px solid #FAA431;
+    border: 1px solid #252424;
     border-radius: 3px;
     margin-top: 5px;
-    padding: 5px;
+    
+    background-color: #383838;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .mod-info {
-    border: 1px solid #FAA431;
+    border: 1px solid #252424;
     border-radius: 3px;
     margin-top: 5px;
 }
