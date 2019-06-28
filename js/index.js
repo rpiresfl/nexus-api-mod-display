@@ -1,10 +1,30 @@
 start();
 
 function start() {
+    fillGameList();
     btnSubmitAPIKey = document.getElementById('btnSubmitAPIKey');
     btnSubmitAPIKey.onclick = function() {
+        clearFields();
         requestModJSON();
     }
+}
+
+function fillGameList() {
+    games = ['Skyrim', 'Fallout 4', 'Skyrim Special Edition', 'New Vegas', 'Oblivion', 'Fallout 3', 'Morrowind'];
+    inputGame = document.getElementById('inputGame');
+    games.forEach(game => {
+        gameOption = document.createElement('option');
+        gameOption.appendChild(document.createTextNode(game));
+        gameOption.setAttribute('value', game.toLowerCase().replace(/ /g,''));
+        inputGame.appendChild(gameOption);
+    });
+}
+
+function clearFields() {
+    fields = ['modName', 'modSummary', 'modAuthor', 'modVersion', 'modUploadDate', 'modUpdateDate', 'modDescription', 'modPicture'];
+    fields.forEach(field => {
+        document.getElementById(field).innerText = '';
+    });
 }
 
 function requestModJSON() {
@@ -38,8 +58,6 @@ function checkRequiredInfo(inputAPIKey, inputModID, inputGame) {
 }
 
 function openRetrievedJSON(retrievedJSON) {
-    clearFields();
-
     parsedJSON = JSON.parse(retrievedJSON);
     document.getElementById('modName').innerText += ' '+ parsedJSON.name;
     document.getElementById('modSummary').innerText += ' '+ parsedJSON.summary;
@@ -51,36 +69,32 @@ function openRetrievedJSON(retrievedJSON) {
     document.getElementById('modPicture').setAttribute('src', parsedJSON.picture_url);
 }
 
-function clearFields() {
-    fields = ['modName', 'modSummary', 'modAuthor', 'modVersion', 'modUploadDate', 'modUpdateDate', 'modDescription', 'modPicture'];
-    fields.forEach(field => {
-        document.getElementById(field).innerText = '';
-    });
-}
-
 function parseDate(date) {
     return date.substr(8, 2) +'-'+ date.substr(5, 2) +'-'+ date.substr(0, 4) +' '+ date.substr(11, 8);
 }
 
 function organizeDescription(description) {
-    description = description.replace(/\[b\]/g, '<strong>');
-    description = description.replace(/\[\/b\]/g, '</strong>');
+    regex = new RegExp();
 
-    description = description.replace(/\[list\]/g, '<ul>');
-    description = description.replace(/\[\/list\]/g, '</ul>');
+    description += ' fileblabla.pdf';
 
-    description = description.replace(/\[\*\]/g, '<li>');
-    description = description.replace(/\[\/\*\]/g, '</li>');
+    tags = [/\[b\]/g, '<strong>',
+            /\[\/b\]/g, '</strong>',
+            /\[list\]/g, '<ul>',
+            /\[\/list\]/g, '</ul>',
+            /\[\*\]/g, '<li>',
+            /\[\/\*\]/g, '</li>',
+            /\[center\]/g, '<div align="center">',
+            /\[\/center\]/g, '</div>',
+            /\[img\]/g, '<img src="',
+            /\[\/img\]/g, '">',
+            /\[i\]/g, '<em>',
+            /\[\/i\]/g, '</em>',
+            '^(file.+)\.pdf$', 'teste'];
 
-    description = description.replace(/\[center\]/g, '<div align="center">');
-    description = description.replace(/\[\/center\]/g, '</div>');
-
-    description = description.replace(/\[img\]/g, '<img src="');
-    description = description.replace(/\[\/img\]/g, '">');
-
-    //Link replacement WIP
-    //description = description.replace(/\[url=\]/g, '<a href="');
-    description = description.replace(/\[\/url\]/g, '"</a>');
-
+    for (i=0;i<tags.length;i+=2) {
+        description = description.replace(tags[i], tags[i+1]);
+    }
+    
     return description;
 }
