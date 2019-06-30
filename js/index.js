@@ -65,7 +65,7 @@ function openRetrievedJSON(retrievedJSON) {
     document.getElementById('modVersion').innerText += ' '+ parsedJSON.version;
     document.getElementById('modUploadDate').innerText += ' '+ parseDate(parsedJSON.created_time);
     document.getElementById('modUpdateDate').innerText += ' '+ parseDate(parsedJSON.updated_time);
-    document.getElementById('modDescription').innerHTML += ' '+ organizeDescription(parsedJSON.description);
+    document.getElementById('modDescription').innerHTML += ' '+ translateBBCode(parsedJSON.description);
     document.getElementById('modPicture').setAttribute('src', parsedJSON.picture_url);
 }
 
@@ -73,28 +73,28 @@ function parseDate(date) {
     return date.substr(8, 2) +'-'+ date.substr(5, 2) +'-'+ date.substr(0, 4) +' '+ date.substr(11, 8);
 }
 
-function organizeDescription(description) {
-    regex = new RegExp();
-
-    description += ' fileblabla.pdf';
-
-    tags = [/\[b\]/g, '<strong>',
-            /\[\/b\]/g, '</strong>',
+function translateBBCode(bbCode) {
+    tags = 
+        [
+            /\[b\](.*)\[\/b\]/g, '<strong>$1</strong>',
             /\[list\]/g, '<ul>',
             /\[\/list\]/g, '</ul>',
             /\[\*\]/g, '<li>',
             /\[\/\*\]/g, '</li>',
-            /\[center\]/g, '<div align="center">',
-            /\[\/center\]/g, '</div>',
-            /\[img\]/g, '<img src="',
-            /\[\/img\]/g, '">',
-            /\[i\]/g, '<em>',
-            /\[\/i\]/g, '</em>',
-            '^(file.+)\.pdf$', 'teste'];
+            /\[center\](.*)\[\/center\]/g, '<div align="center">$1</div>',
+            /\[img\](.*)\[\/img\]/g, '<img src=\"$1\">',
+            /\[i\](.*)\[\/i\]/g, '<em>$1</em>',
+            /\[url=(.*)\](.*)\[\/url\]/g, '<a href=\"$1\">$2</a>',
+            /\[size=(.*)\](.*)\[\/size\]/g, '<font size=\"$1\">$2</font>',
+            /\[color=([^\]]*)\]([^\[]*)\[\/color\]/g, '<font style="color: $1;">$2</font>',
+            /\[line\]/g, '<div class=\"line\"></div>',
+            /\[heading\](.*)\[\/heading\]/g, '<h2>$1</h2>'
+        ];
+
 
     for (i=0;i<tags.length;i+=2) {
-        description = description.replace(tags[i], tags[i+1]);
+        bbCode = bbCode.replace(tags[i], tags[i+1]);
     }
-    
-    return description;
+
+    return bbCode;
 }
